@@ -1,0 +1,23 @@
+vector<int> Solution::repeatedNumber(const vector<int> &A) {
+    long long n=A.size();
+    int numA,numB;
+    long long S=0,sum =0,SS=0,sumOfSquares=0;
+    
+    S=n*(n+1)/2;
+    SS=n*(n+1)*(2*n+1)/6;
+    
+    for(int i=0;i<n;i++)
+    {
+        sum+=A[i];
+        sumOfSquares+=(long long)A[i]*(long long)A[i];
+    }
+    
+    long long BminusA = S-sum;
+    long long BplusA = (SS-sumOfSquares)/BminusA;
+    
+    numB= (BminusA+BplusA)/2;
+    numA= BplusA-numB;
+    
+    vector<int> repeatedNumbers = {numA,numB};
+    return repeatedNumbers;
+}
